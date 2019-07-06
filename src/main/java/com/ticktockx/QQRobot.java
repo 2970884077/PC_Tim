@@ -58,7 +58,7 @@ public class QQRobot
 				Plugin plugin = (Plugin)obj;
 				plugin.onLoad(api);
 				Util.log("[插件] 加载成功 [插件名]: " + plugin.name());
-
+				return plugin;
 			}else{
 				throw new PluginException("the main class must extend the Plugin");
 			}

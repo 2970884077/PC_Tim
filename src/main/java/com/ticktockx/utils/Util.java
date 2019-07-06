@@ -28,7 +28,7 @@ public class Util
 	
 	public static boolean display_verifpic(byte[] data) {
 		final String base = "@#&$%*o!;.";// 字符串由复杂到简单
-		BufferedImage image = null;
+		BufferedImage image;
 		try
 		{
 			image = Util.byte_to_img(data);
@@ -89,12 +89,15 @@ public class Util
 	
 	
 	public static String read_property(String key){
-		File property_file = new File(JarLib.JAR_FOLDER +"/config/record.conf");
-		Properties properties = new Properties();
 
+		Properties properties = new Properties();
 		// 使用InPutStream流读取properties文件
 		try
 		{
+			File property_file = new File(JarLib.JAR_FOLDER +"/config/record.conf");
+			if(!property_file.exists()){
+				property_file.createNewFile();
+			}
 			if (!property_file.exists()){
 				property_file.createNewFile();
 			}
@@ -136,14 +139,14 @@ public class Util
 	}
 	public static void write_property(String key,String value){
 		File property_file = new File(JarLib.JAR_FOLDER+"/config/record.conf");
+		System.out.println(property_file);
 		Properties properties = new Properties();
 		// 使用InPutStream流读取properties文件
-		try
+		try(BufferedReader bufferedReader = new BufferedReader(new FileReader(property_file));)
 		{
 			if (!property_file.exists()){
 				property_file.createNewFile();
 			}
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(property_file));
 
 			properties.load(bufferedReader);
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(property_file)));
@@ -151,9 +154,9 @@ public class Util
 			properties.setProperty(key,value);
 			properties.store(bw,value);
 
+
 		}
-		catch (IOException e)
-		{
+		catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
 
@@ -332,7 +335,7 @@ public class Util
             outStream.close();
             //读取返回内容
             BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-			String line = null;
+			String line;
 
 			while ((line = reader.readLine()) != null) {
 

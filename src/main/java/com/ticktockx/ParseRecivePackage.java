@@ -13,11 +13,11 @@ import java.util.Collection;
 
 public class ParseRecivePackage
 {
- public long Friend_Message_QQ;
- public byte[] Friend_Message_TIME;
+ 	public long Friend_Message_QQ;
+ 	public byte[] Friend_Message_TIME;
 	public byte[] Header = null;
-public int PackageLength = 0;
-		public byte[] Version = null;
+	public int PackageLength = 0;
+	public byte[] Version = null;
 	public byte[] Command = null;
 	public byte[] Sequence = null;
 	public byte[] QQ = null;

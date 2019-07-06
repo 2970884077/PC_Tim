@@ -12,7 +12,6 @@ public class QQGlobal
 	/// </summary>
 	public static final  byte QQHeader03Family = 0x03;
 	public static byte[] QqexeMD5  = Util.str_to_byte("facf7cc5ae02e6650c0107cdfe0e1b2c");
-	
-	
+
 	public static final byte[] Online = {0x0A};
 }
