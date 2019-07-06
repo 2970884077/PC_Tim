@@ -19,8 +19,6 @@ import java.util.jar.JarFile;
 public class QQRobot
 {
 	private Yaml yaml;
-	private Udpsocket socket;
-	private QQUser user;
 	private RobotApi api;
 
 	private List<Plugin> plugins =new ArrayList<Plugin>();
@@ -28,9 +26,7 @@ public class QQRobot
 	public QQRobot(Udpsocket _socket, QQUser _user)
 	{
 		this.yaml = new Yaml();
-		this.socket = _socket;
-		this.user = _user;
-		this.api = new RobotApi(this.socket, this.user);
+		this.api = new RobotApi(_socket, _user);
 		File pluginFile  = new File(JarLib.JAR_FOLDER+"/plugins/");
 		File[] plugins = pluginFile.listFiles();
 		if(plugins!=null){
@@ -71,6 +67,7 @@ public class QQRobot
 		}
 		throw new PluginException("other error");
 	}
+
 
 	public void call(final QQMessage qqmessage)
 	{

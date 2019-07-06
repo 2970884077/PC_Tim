@@ -2,6 +2,7 @@ package com.ticktockx.utils;
 
 
 
+import com.ticktockx.JarLib;
 import com.ticktockx.PictureKeyStore;
 import com.ticktockx.PictureStore;
 import com.ticktockx.QQUser;
@@ -88,7 +89,7 @@ public class Util
 	
 	
 	public static String read_property(String key){
-		File property_file = new File(Util.get_root_path()+"/config/record.conf");
+		File property_file = new File(JarLib.JAR_FOLDER +"/config/record.conf");
 		Properties properties = new Properties();
 
 		// 使用InPutStream流读取properties文件
