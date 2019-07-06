@@ -19,12 +19,11 @@ import java.util.jar.JarFile;
 public class QQRobot
 {
 	private Yaml yaml;
-	private Udpsocket socket = null;
-	private QQUser user = null;
+	private Udpsocket socket;
+	private QQUser user;
 	private RobotApi api;
-	private String exact_directory;
 
-	List<Plugin> plugins =new ArrayList<Plugin>();
+	private List<Plugin> plugins =new ArrayList<Plugin>();
 
 	public QQRobot(Udpsocket _socket, QQUser _user)
 	{
@@ -32,32 +31,21 @@ public class QQRobot
 		this.socket = _socket;
 		this.user = _user;
 		this.api = new RobotApi(this.socket, this.user);
-		File directory = new File("");
-		try
-		{
-			this.exact_directory  = directory.getCanonicalPath();
-			File plugin_path = new File(exact_directory + "/plugin");
-			String[] plugin_list = plugin_path.list();
-			if (plugin_list != null)
-			{
-				List<String> list = Arrays.asList(plugin_list);
-				for (String file: list)
-				{
-					if (file.endsWith(".jar"))
-					{
-						plugins.add(loadPlugin("file://" + this.exact_directory + "/plugin/"+file));
-					}
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.out.println(e.toString());
-		}
-
+		File pluginFile  = new File(JarLib.JAR_FOLDER+"/plugins/");
+		File[] plugins = pluginFile.listFiles();
+		if(plugins!=null){
+		    for(File plugin:plugins){
+		        this.plugins.add(loadPlugin(plugin.toString()));
+            }
+        }
 	}
 
-	/**
+    public List<Plugin> getPlugins() {
+        return plugins;
+    }
+
+
+    /**
 	 * 一个加强版的插件管理系统
 	 */
 
