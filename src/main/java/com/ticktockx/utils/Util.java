@@ -135,7 +135,7 @@ public class Util
 
 	}
 	public static void write_property(String key,String value){
-		File property_file = new File(Util.get_root_path()+"/config/record.conf");
+		File property_file = new File(JarLib.JAR_FOLDER+"/config/record.conf");
 		Properties properties = new Properties();
 		// 使用InPutStream流读取properties文件
 		try
