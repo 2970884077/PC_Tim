@@ -1,5 +1,9 @@
 package com.ticktockx.sdk;
 
+import com.ticktockx.sdk.pluginx.EventRegisterHandler;
+import com.ticktockx.sdk.pluginx.event.SendFriendEvent;
+import com.ticktockx.sdk.pluginx.event.SendMessageEvent;
+
 abstract public class PluginBase implements Plugin{
 
   protected API m_api;
@@ -19,8 +23,12 @@ abstract public class PluginBase implements Plugin{
   public final void onMessageHandler(QQMessage message)
   {
     if (message.Group_uin == 0L) {
+      SendFriendEvent event = new SendFriendEvent(message);
+      EventRegisterHandler.getHandler().callEvent(event);
       onFriendMessageHandler(message);
     } else {
+      SendMessageEvent event = new SendMessageEvent(message);
+      EventRegisterHandler.getHandler().callEvent(event);
       onGroupMessageHandler(message);
     }
   }

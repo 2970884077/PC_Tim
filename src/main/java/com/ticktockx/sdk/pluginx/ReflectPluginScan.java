@@ -3,6 +3,7 @@ package com.ticktockx.sdk.pluginx;
 import com.ticktockx.ex.PluginException;
 import com.ticktockx.sdk.API;
 import com.ticktockx.sdk.Plugin;
+import com.ticktockx.sdk.pluginx.event.Listener;
 import com.ticktockx.utils.Util;
 
 import java.io.File;
@@ -43,6 +44,10 @@ public class ReflectPluginScan implements PluginScanner{
                     plugin.onLoad(api);
                     Util.log("[Plugin::MainScan] the ["+pluName+"] started,author:"+author+" version: "+version);
                     return plugin;
+                }
+                Listener listener = pluginClass.getAnnotation(Listener.class);
+                if(listener!=null){
+                    EventRegisterHandler.getHandler().registerListener(pluginClass.newInstance());
                 }
             }
         }

@@ -1,7 +1,9 @@
 package com.ticktockx;
 
 
+import com.ticktockx.sdk.pluginx.EventRegisterHandler;
 import com.ticktockx.sdk.pluginx.PluginManager;
+import com.ticktockx.sdk.pluginx.event.SendMessageEvent;
 import com.ticktockx.socket.Udpsocket;
 import com.ticktockx.sdk.Plugin;
 import com.ticktockx.sdk.QQMessage;
@@ -23,7 +25,11 @@ public class QQRobot
 	{
 		for (final Plugin plugin : manager.getPlugins())
 		{
-			new Thread(()->plugin.onMessageHandler(qqmessage)).start();
+			new Thread(()->{
+				plugin.onMessageHandler(qqmessage);
+				SendMessageEvent event = new SendMessageEvent(qqmessage);
+				EventRegisterHandler.getHandler().callEvent(event);
+			}).start();
 		}
 	}
 
