@@ -21,11 +21,9 @@ public class ReflectPluginScan implements PluginScanner{
 
     private String file;
 
-    private PluginManager manager;
 
-    public ReflectPluginScan(String file,PluginManager manager){
+    public ReflectPluginScan(String file){
         this.file = file;
-        this.manager = manager;
     }
     public Plugin scan(API api) throws IOException,ClassNotFoundException,InstantiationException,IllegalAccessException {
         ClassLoader loader = new URLClassLoader(new URL[]{new File(file).toURI().toURL()}, this.getClass().getClassLoader());
@@ -44,7 +42,6 @@ public class ReflectPluginScan implements PluginScanner{
                     Plugin plugin = (Plugin) pluginClass.newInstance();
                     plugin.onLoad(api);
                     Util.log("[Plugin::MainScan] the ["+pluName+"] started,author:"+author+" version: "+version);
-                    manager.getPlugins().add(plugin);
                     return plugin;
                 }
             }

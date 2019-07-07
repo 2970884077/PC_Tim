@@ -83,7 +83,7 @@ public class PluginManager {
                 }
             }else{
                 //如果没有文件，则通过第二个策略
-                PluginScanner scan = new ReflectPluginScan(file,this);
+                PluginScanner scan = new ReflectPluginScan(file);
                 return scan.scan(api);
             }
         }catch (Exception e){
