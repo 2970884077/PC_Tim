@@ -45,10 +45,11 @@ public class ReflectPluginScan implements PluginScanner{
                     plugin.onLoad(api);
                     Util.log("[Plugin::MainScan] the"+pluName+" started,author:"+author+" version: "+version);
                     manager.getPlugins().add(plugin);
+                    return plugin;
                 }
             }
         }
-        throw new PluginException("the plgin must have the main class");
+        throw new PluginException("the plugin must have the main class");
     }
 
 }
