@@ -43,7 +43,7 @@ public class ReflectPluginScan implements PluginScanner{
                     String version = main.version();
                     Plugin plugin = (Plugin) pluginClass.newInstance();
                     plugin.onLoad(api);
-                    Util.log("[Plugin::MainScan] the"+pluName+" started,author:"+author+" version: "+version);
+                    Util.log("[Plugin::MainScan] the ["+pluName+"] started,author:"+author+" version: "+version);
                     manager.getPlugins().add(plugin);
                     return plugin;
                 }
