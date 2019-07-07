@@ -27,7 +27,7 @@ public class MessageManager
 		if (Util.GetInt(parsereceive.Command)== 23){
 			QQMessage qqmessage = parsereceive.parse0017();
 			if (qqmessage != null){
-			byte[] data_to_send = SendPackageFactory.get0017(this.user,parsereceive.Message_To_Respone,parsereceive.Sequence);
+			byte[] data_to_send = SendPackageFactory.getReceiveGroupMessagePack(this.user,parsereceive.Message_To_Respone,parsereceive.Sequence);
 			this.socket.sendMessage(data_to_send);
 			if  (qqmessage != null){
 
@@ -94,9 +94,9 @@ public class MessageManager
 		}
 		else if (Util.GetInt(parsereceive.Command)== 206){
 			QQMessage qqmessage = parsereceive.parse00ce();
-			byte[] data_to_send = SendPackageFactory.get00ce(this.user,parsereceive.Message_To_Respone,parsereceive.Sequence);
+			byte[] data_to_send = SendPackageFactory.getReceiveFriendMessagePack(this.user,parsereceive.Message_To_Respone,parsereceive.Sequence);
 			this.socket.sendMessage(data_to_send);
-			data_to_send = SendPackageFactory.get0319(this.user,parsereceive.Friend_Message_QQ,parsereceive.Friend_Message_TIME);
+			data_to_send = SendPackageFactory.getReceiveFriendMessageTimePack(this.user,parsereceive.Friend_Message_QQ,parsereceive.Friend_Message_TIME);
 			this.socket.sendMessage(data_to_send);
 			if  (qqmessage != null){
 

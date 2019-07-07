@@ -29,6 +29,7 @@ public class QQRobot
 		this.api = new RobotApi(_socket, _user);
 		File pluginFile  = new File(JarLib.JAR_FOLDER+"/plugins/");
 		File[] plugins = pluginFile.listFiles();
+		System.out.println("加载插件中");
 		if(plugins!=null){
 		    for(File plugin:plugins){
 		        this.plugins.add(loadPlugin(plugin.toString()));

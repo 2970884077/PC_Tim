@@ -17,7 +17,7 @@ public class SendPackageFactory
 	protected static int _seq = 0x3100; // (char)Util.Random.Next();
 	protected static byte[] body_end = {0x03};
 
-	public static byte[] get00ba(QQUser user, String code)
+	public static byte[] getRequestVerifyCodePack(QQUser user, String code)
 	{
 		ByteBuilder builder = new ByteBuilder();
 
@@ -87,7 +87,7 @@ public class SendPackageFactory
 	
 	
 
-	public static byte[] get0825(QQUser user){
+	public static byte[] getDirectLoginServerPack(QQUser user){
 		ByteBuilder builder = new ByteBuilder();
 
 
@@ -125,7 +125,7 @@ public class SendPackageFactory
 
 	}
 
-	public static byte[] get0836(QQUser user,boolean need_verifycode){
+	public static byte[] getLoginRequestPack(QQUser user,boolean need_verifycode){
 		ByteBuilder builder = new ByteBuilder();
 
 		byte[] tlv0110 = null;
@@ -280,7 +280,7 @@ public class SendPackageFactory
 
 	}
 
-	public static byte[] get0058(QQUser user){
+	public static byte[] getHeartBeatPack(QQUser user){
 		ByteBuilder builder = new ByteBuilder();
 
 		builder.writebytes(QQGlobal.QQHeaderBasicFamily);
@@ -309,7 +309,7 @@ public class SendPackageFactory
 
 
 
-	public static byte[] get0017(QQUser user,byte[] data_to_send,byte[] seq)
+	public static byte[] getReceiveGroupMessagePack(QQUser user,byte[] data_to_send,byte[] seq)
 	{
 		ByteBuilder builder = new ByteBuilder();
 
@@ -336,7 +336,7 @@ public class SendPackageFactory
 		return builder.getdata();
 	}
 
-	public static byte[] get00ce(QQUser user,byte[] data_to_send,byte[] seq)
+	public static byte[] getReceiveFriendMessagePack(QQUser user,byte[] data_to_send,byte[] seq)
 	{
 		ByteBuilder builder = new ByteBuilder();
 
@@ -365,7 +365,7 @@ public class SendPackageFactory
 	}
 
 
-	public static byte[] get0319(QQUser user,long _recvQQ,byte[] MessageTime){
+	public static byte[] getReceiveFriendMessageTimePack(QQUser user,long _recvQQ,byte[] MessageTime){
 		ByteBuilder builder = new ByteBuilder();
 		builder.writebytes(QQGlobal.QQHeaderBasicFamily);
 		builder.writebytes(user.TXProtocol.CMainVer);
@@ -405,7 +405,7 @@ public class SendPackageFactory
 		return builder.getdata();
 	}
 
-	public static byte[] get0002(QQUser user, MessageFactory message){
+	public static byte[] getSendGroupTextMessagePack(QQUser user, MessageFactory message){
 
 		ByteBuilder builder = new ByteBuilder();
 		builder.writebytes(QQGlobal.QQHeaderBasicFamily);
@@ -520,7 +520,7 @@ public class SendPackageFactory
 		return builder.getdata();
 	}
 
-	public static byte[] get00cd(QQUser user,MessageFactory message){
+	public static byte[] getSendFriendTextMessagePack(QQUser user,MessageFactory message){
 
 		ByteBuilder builder = new ByteBuilder();
 		builder.writebytes(QQGlobal.QQHeaderBasicFamily);
@@ -605,7 +605,7 @@ public class SendPackageFactory
 		return builder.getdata();
 	}
 
-	public static byte[] get0388(QQUser user,MessageFactory message){
+	public static byte[] getSendGroupImageMessagePack(QQUser user,MessageFactory message){
 		ByteBuilder builder = new ByteBuilder();
 		builder.writebytes(QQGlobal.QQHeaderBasicFamily);
 		builder.writebytes(user.TXProtocol.CMainVer);

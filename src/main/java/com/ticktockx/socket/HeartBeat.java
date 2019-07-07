@@ -23,7 +23,7 @@ public class HeartBeat
 				while(true){
 					try
 					{
-						byte[] data = SendPackageFactory.get0058(_user);
+						byte[] data = SendPackageFactory.getHeartBeatPack(_user);
 						time_miles  = new Date().getTime();
 						socket.sendMessage(data);
 						this.sleep(20000);

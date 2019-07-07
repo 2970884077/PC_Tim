@@ -26,7 +26,7 @@ public class LoginManager
 	}
 	
 	public void relogin(){
-		data = SendPackageFactory.get0825(_user);
+		data = SendPackageFactory.getDirectLoginServerPack(_user);
 		socket.sendMessage(data);
 	}
 	
@@ -34,7 +34,7 @@ public class LoginManager
 	public void Login(){
 		try
 		{
-		data = SendPackageFactory.get0825(_user);
+		data = SendPackageFactory.getDirectLoginServerPack(_user);
 		socket.sendMessage(data);
 		byte[] result = socket.receiveMessage();
 		//System.out.println(Util.byte2HexString(result));
@@ -47,7 +47,7 @@ public class LoginManager
 			_user.IsLoginRedirect = true;
 			socket = new Udpsocket(_user);
 			
-			data = SendPackageFactory.get0825(_user);
+			data = SendPackageFactory.getDirectLoginServerPack(_user);
 			
 			socket.sendMessage(data);
 			
@@ -58,7 +58,7 @@ public class LoginManager
 		}
 		
 		Util.log("服务器连接成功,开始登陆");
-		data = SendPackageFactory.get0836(_user,false);
+		data = SendPackageFactory.getLoginRequestPack(_user,false);
 		socket.sendMessage(data);
 		result = socket.receiveMessage();
 		parsereceive = new ParseRecivePackage(result,_user.TXProtocol.BufDhShareKey,_user);
@@ -71,7 +71,7 @@ public class LoginManager
 				Util.log("需要验证码");
 				while(parsereceive.Status==0x1){
 					while(true){//死循环获取验证码
-						data = SendPackageFactory.get00ba(_user,"");
+						data = SendPackageFactory.getRequestVerifyCodePack(_user,"");
 						socket.sendMessage(data);
 						result = socket.receiveMessage();
 						parsereceive = new ParseRecivePackage(result,_user.QQPacket00BaKey,_user);
@@ -86,7 +86,7 @@ public class LoginManager
 					if(code==null||code.isEmpty()||code.equals("")){
 						code ="TICK";
 					}
-					data = SendPackageFactory.get00ba(_user,code);
+					data = SendPackageFactory.getRequestVerifyCodePack(_user,code);
 					socket.sendMessage(data);
 					result = socket.receiveMessage();
 					parsereceive = new ParseRecivePackage(result,_user.QQPacket00BaKey,_user);
@@ -103,7 +103,7 @@ public class LoginManager
 			
 		while (parsereceive.Header[0] != 0){
 			Util.log("二次登陆");
-			data = SendPackageFactory.get0836(_user,true);
+			data = SendPackageFactory.getLoginRequestPack(_user,true);
 			socket.sendMessage(data);
 			result = socket.receiveMessage();
 			parsereceive = new ParseRecivePackage(result,_user.TXProtocol.BufDhShareKey,_user);
