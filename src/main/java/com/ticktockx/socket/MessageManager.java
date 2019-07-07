@@ -8,7 +8,7 @@ import com.ticktockx.sdk.QQMessage;
 
 public class MessageManager
 {
-	private QQUser user = null;
+	private QQUser user;
 	private Udpsocket socket;
 
 	private QQRobot robot;
@@ -54,7 +54,7 @@ public class MessageManager
 		else if (Util.GetInt(parsereceive.Command)== 904){
 			PictureStore store = null;
 			final PictureKeyStore keystore = parsereceive.parse0388();
-		if (keystore.uploaded == false){
+		if (!keystore.uploaded){
 			new Thread(){
 				public void run(){
 					PictureStore  new_store = Util.uploadimg(keystore,user,Util.GetInt(parsereceive.Sequence));

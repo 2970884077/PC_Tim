@@ -13,16 +13,13 @@ import java.util.Scanner;
 
 public class LoginManager
 {
-	private byte[] data = null;
-	public Udpsocket socket = null;
+	private byte[] data;
+	public Udpsocket socket;
 	private QQUser _user;
 	public LoginManager(QQUser user){
 		this._user = user;
 		user.TXProtocol.DwServerIP= "sz.tencent.com";
 		socket = new Udpsocket(user);
-		
-		
-		
 	}
 	
 	public void relogin(){

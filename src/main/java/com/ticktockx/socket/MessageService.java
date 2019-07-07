@@ -8,19 +8,15 @@ import java.util.Date;
 
 public class MessageService
 {
-	private Thread thread = null;
-	private QQUser user = null;
-	private MessageManager messagemanager= null;
-	private Udpsocket socket = null;
-	private long timemills = 0;
-
-	private QQRobot robot;
+	private Thread thread;
+	private QQUser user;
+	private MessageManager messagemanager;
+	private Udpsocket socket;
 	
 	public MessageService(QQUser _user,Udpsocket _socket,QQRobot _robot){
 		this.user = _user;
 		this.socket = _socket;
-		this.robot = _robot;
-		this.messagemanager = new MessageManager(this.user,this.socket,this.robot);
+		this.messagemanager = new MessageManager(this.user,this.socket,_robot);
 		this.thread = new Thread(){
 			public void run(){
 				while(true){
@@ -33,8 +29,6 @@ public class MessageService
 			}
 		};
 	}
-	
-	
 	public void start(){
 		this.thread.start();
 		
