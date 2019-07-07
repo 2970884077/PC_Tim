@@ -6,14 +6,6 @@ abstract public class PluginBase implements Plugin{
 
   protected MessageFactory factory = new MessageFactory();
 
-  public abstract String author();
-
-  public abstract String Version();
-
-  public abstract String name();
-
-  public abstract void onEnable();
-
   public abstract void onFriendMessageHandler(QQMessage message);
 
   public abstract void onGroupMessageHandler(QQMessage message);

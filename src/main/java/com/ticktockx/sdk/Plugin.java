@@ -2,11 +2,25 @@ package com.ticktockx.sdk;
 
 public interface Plugin {
 
-    String author();
+    default String author(){
+        return "";
+    }
 
-    String Version();
+    default String version(){
+        return "";
+    }
 
-    String name();
+    default String name(){
+        return "";
+    }
+
+    default void onEnable(){
+
+    }
+
+    default void onDisable(){
+
+    }
 
     void onLoad(API api);
 

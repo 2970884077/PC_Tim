@@ -2,6 +2,7 @@ package com.ticktockx;
 
 
 
+import com.ticktockx.sdk.pluginx.PluginManager;
 import com.ticktockx.socket.HeartBeat;
 import com.ticktockx.socket.LoginManager;
 import com.ticktockx.socket.MessageService;
@@ -9,7 +10,7 @@ import com.ticktockx.utils.Util;
 
 import java.util.Scanner;
 
-public class Main
+public class Connector
 {
 	public static void main(final String[] args)
 	{
@@ -21,6 +22,8 @@ public class Main
 			HeartBeat heartbeat;
 			QQRobot robot;
 			MessageService messageservice;
+
+			PluginManager pluginManager;
 
 			public void run()
 			{
@@ -49,6 +52,9 @@ public class Main
 					{
 						this.messageservice.stop();
 						this.heartbeat.stop();
+						if(pluginManager!=null){
+							pluginManager.disable();
+						}
 					}
 					while (!user.islogined)
 					{
@@ -65,7 +71,9 @@ public class Main
 							this.messageservice.start();
 							Util.write_property("account",qq);
 							Util.write_property("password",Util.byte2HexString(passwordmd5));
-							
+							if(pluginManager==null){
+								pluginManager = robot.getManager();
+							}
 							break;
 						}
 					}
