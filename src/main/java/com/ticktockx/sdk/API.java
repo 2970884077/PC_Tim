@@ -1,7 +1,7 @@
 package com.ticktockx.sdk;
 
 public interface API {
-    void SendGroupMessage(MessageFactory factory);
+    void sendGroupMessage(MessageFactory factory);
 	
-	  void SendFriendMessage(MessageFactory factory);
+    void sendFriendMessage(MessageFactory factory);
 }

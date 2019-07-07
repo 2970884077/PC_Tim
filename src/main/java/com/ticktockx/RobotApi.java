@@ -16,13 +16,13 @@ private Udpsocket socket = null;
  
  }
 	@Override
-	public void SendGroupMessage(MessageFactory factory){
+	public void sendGroupMessage(MessageFactory factory){
 
 		SendMessage.SendGroupMessage(this.user,this.socket,factory);
 
 	}
 	@Override
-	public void SendFriendMessage(MessageFactory factory){
+	public void sendFriendMessage(MessageFactory factory){
 
 		SendMessage.SendFriendMessage(this.user,this.socket,factory);
 

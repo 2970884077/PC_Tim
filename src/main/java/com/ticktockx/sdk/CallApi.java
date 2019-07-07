@@ -17,7 +17,7 @@ public class CallApi {
     factory.message_type = 0;
     factory.Friend_uin = qq;
     factory.Message = message;
-    api.SendFriendMessage(factory);
+    api.sendFriendMessage(factory);
   }
 
   public static void sendGroupMessage(long qq,String message)
@@ -26,7 +26,7 @@ public class CallApi {
     factory.message_type = 0;
     factory.Group_uin = qq;
     factory.Message = message;
-    api.SendGroupMessage(factory);
+    api.sendGroupMessage(factory);
   }
 
   private static void clearFactory()

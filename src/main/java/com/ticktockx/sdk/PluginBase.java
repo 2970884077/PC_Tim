@@ -31,7 +31,7 @@ abstract public class PluginBase implements Plugin{
     factory.message_type = 0;
     factory.Friend_uin = qq;
     factory.Message = message;
-    m_api.SendFriendMessage(factory);
+    m_api.sendFriendMessage(factory);
   }
 
   public final void sendGroupMessage(long qq,String message)
@@ -40,7 +40,7 @@ abstract public class PluginBase implements Plugin{
     factory.message_type = 0;
     factory.Group_uin = qq;
     factory.Message = message;
-    m_api.SendGroupMessage(factory);
+    m_api.sendGroupMessage(factory);
   }
 
   private final void clearFactory()
