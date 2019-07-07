@@ -2,6 +2,7 @@ package com.ticktockx;
 
 
 import com.ticktockx.ex.PluginException;
+import com.ticktockx.sdk.CallApi;
 import com.ticktockx.socket.Udpsocket;
 import com.ticktockx.utils.Util;
 import com.ticktockx.sdk.Plugin;
@@ -29,6 +30,7 @@ public class QQRobot
 		this.api = new RobotApi(_socket, _user);
 		File pluginFile  = new File(JarLib.JAR_FOLDER+"/plugins/");
 		File[] plugins = pluginFile.listFiles();
+		CallApi.init(this.api);
 		System.out.println("加载插件中");
 		if(plugins!=null){
 		    for(File plugin:plugins){
