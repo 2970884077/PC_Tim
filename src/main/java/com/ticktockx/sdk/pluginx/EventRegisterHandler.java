@@ -35,10 +35,10 @@ public class EventRegisterHandler {
 
     public void registerEvent(final Method method) throws Exception{
         Class<?> type = method.getDeclaringClass();
-        addMethod(method,(Listener)(type.newInstance()));
+        addMethod(method,(type.newInstance()));
     }
 
-    private void addMethod(Method method,Listener listenerInstance){
+    private void addMethod(Method method,Object listenerInstance){
         EventHandler manager = method.getDeclaredAnnotation(EventHandler.class);
         if (manager != null) {
             MethodInvokeMapper mapper = new MethodInvokeMapper(manager.priority(), method);
